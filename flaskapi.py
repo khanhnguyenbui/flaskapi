@@ -78,7 +78,12 @@ class User(Resource):
         global users
         users = [user for user in users if user["name"] != name]
         return "{} is deleted.".format(name), 200
+
+class UserAll(Resource):
+    def get(self):
+        return users
       
 api.add_resource(User, "/user/<string:name>")
+api.add_resource(UserAll, "/")
 
 app.run(debug=True)
